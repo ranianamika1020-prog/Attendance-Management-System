@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Subjects</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/subjects.css') }}">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        <h2>Admin Panel</h2>
+
+        <nav>
+            <a href="/admin">Dashboard</a>
+            <a href="#">Manage Students</a>
+            <a href="#">Manage Faculty</a>
+            <a href="/subjects" class="active">Manage Subjects</a>
+            <a href="/attendance-records">Attendance Records</a>
+            <a href="/">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <h1>Manage Subjects</h1>
+            <p>Add and manage college subjects</p>
+        </header>
+
+        <section class="form-section">
+            <h2>Add New Subject</h2>
+
+            <form action="#" method="POST">
+
+                <div class="form-group">
+                    <label for="subject_name">Subject Name</label>
+                    <input type="text" id="subject_name"
+                    name="subject_name"
+                    placeholder="Enter subject name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject_code">Subject Code</label>
+                    <input type="text" id="subject_code"
+                    name="subject_code"
+                    placeholder="Enter subject code" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="semester">Semester</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">Select Semester</option>
+                        <option value="1">1st Semester</option>
+                        <option value="2">2nd Semester</option>
+                        <option value="3">3rd Semester</option>
+                        <option value="4">4th Semester</option>
+                        <option value="5">5th Semester</option>
+                        <option value="6">6th Semester</option>
+                        <option value="7">7th Semester</option>
+                        <option value="8">8th Semester</option>
+                    </select>
+                </div>
+
+                <button type="submit">Add Subject</button>
+
+            </form>
+        </section>
+
+        <section class="table-section">
+            <h2>Subject List</h2>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Subject Code</th>
+                            <th>Subject Name</th>
+                            <th>Semester</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>CS301</td>
+                            <td>Database Management System</td>
+                            <td>3rd</td>
+                            <td><button class="delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>CS302</td>
+                            <td>Object Oriented Programming</td>
+                            <td>3rd</td>
+                            <td><button class="delete-btn">Delete</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>CS303</td>
+                            <td>Discrete Mathematics</td>
+                            <td>3rd</td>
+                            <td><button class="delete-btn">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

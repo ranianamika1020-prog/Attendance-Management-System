@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/attendance.css') }}">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        <h2>Faculty Panel</h2>
+
+        <nav>
+            <a href="/faculty">Dashboard</a>
+            <a href="#">My Profile</a>
+            <a href="#">My Subjects</a>
+            <a href="/mark-attendance" class="active">Mark Attendance</a>
+            <a href="#">Attendance Records</a>
+            <a href="/">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <h1>Mark Attendance</h1>
+            <p>Record student attendance for your classes</p>
+        </header>
+
+        <section class="selection-section">
+            <h2>Class Details</h2>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="subject">Select Subject</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Choose Subject</option>
+                        <option value="DBMS">Database Management System</option>
+                        <option value="OOP">Object Oriented Programming</option>
+                        <option value="DM">Discrete Mathematics</option>
+                        <option value="SE">Software Engineering</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Attendance Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="attendance-section">
+            <h2>Student Attendance List</h2>
+
+            <form action="#" method="POST">
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Roll Number</th>
+                                <th>Student Name</th>
+                                <th>Present</th>
+                                <th>Absent</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>2024CSE101</td>
+                                <td>Rahul Sharma</td>
+                                <td>
+                                    <input type="radio" name="attendance_101"
+                                    value="Present" required>
+                                </td>
+                                <td>
+                                    <input type="radio" name="attendance_101"
+                                    value="Absent">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>2024CSE102</td>
+                                <td>Priya Singh</td>
+                                <td>
+                                    <input type="radio" name="attendance_102"
+                                    value="Present" required>
+                                </td>
+                                <td>
+                                    <input type="radio" name="attendance_102"
+                                    value="Absent">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>2024CSE103</td>
+                                <td>Aman Khan</td>
+                                <td>
+                                    <input type="radio" name="attendance_103"
+                                    value="Present" required>
+                                </td>
+                                <td>
+                                    <input type="radio" name="attendance_103"
+                                    value="Absent">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>2024CSE104</td>
+                                <td>Neha Gupta</td>
+                                <td>
+                                    <input type="radio" name="attendance_104"
+                                    value="Present" required>
+                                </td>
+                                <td>
+                                    <input type="radio" name="attendance_104"
+                                    value="Absent">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <button type="submit">Submit Attendance</button>
+
+            </form>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

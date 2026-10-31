@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Records</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/records.css') }}">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        <h2>Admin Panel</h2>
+
+        <nav>
+            <a href="/admin">Dashboard</a>
+            <a href="#">Manage Students</a>
+            <a href="#">Manage Faculty</a>
+            <a href="/subjects">Manage Subjects</a>
+            <a href="/attendance-records" class="active">Attendance Records</a>
+            <a href="/">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <h1>Attendance Records</h1>
+            <p>View and monitor student attendance</p>
+        </header>
+
+        <section class="summary-cards">
+
+            <div class="card">
+                <h3>Total Students</h3>
+                <p>120</p>
+            </div>
+
+            <div class="card">
+                <h3>Present Today</h3>
+                <p>102</p>
+            </div>
+
+            <div class="card">
+                <h3>Absent Today</h3>
+                <p>18</p>
+            </div>
+
+        </section>
+
+        <section class="filter-section">
+            <h2>Filter Attendance</h2>
+
+            <div class="filter-row">
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject">
+                        <option value="">All Subjects</option>
+                        <option value="DBMS">DBMS</option>
+                        <option value="OOP">OOP</option>
+                        <option value="DM">Discrete Mathematics</option>
+                        <option value="SE">Software Engineering</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date">
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status">
+                        <option value="">All</option>
+                        <option value="Present">Present</option>
+                        <option value="Absent">Absent</option>
+                    </select>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="records-section">
+            <h2>Attendance Details</h2>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Roll Number</th>
+                            <th>Student Name</th>
+                            <th>Subject</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>2024CSE101</td>
+                            <td>Rahul Sharma</td>
+                            <td>DBMS</td>
+                            <td>31-10-2026</td>
+                            <td class="present">Present</td>
+                        </tr>
+
+                        <tr>
+                            <td>2024CSE102</td>
+                            <td>Priya Singh</td>
+                            <td>OOP</td>
+                            <td>31-10-2026</td>
+                            <td class="present">Present</td>
+                        </tr>
+
+                        <tr>
+                            <td>2024CSE103</td>
+                            <td>Aman Khan</td>
+                            <td>DBMS</td>
+                            <td>31-10-2026</td>
+                            <td class="absent">Absent</td>
+                        </tr>
+
+                        <tr>
+                            <td>2024CSE104</td>
+                            <td>Neha Gupta</td>
+                            <td>Discrete Mathematics</td>
+                            <td>31-10-2026</td>
+                            <td class="present">Present</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

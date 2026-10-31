@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Attendance History</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/history.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>Student Portal</h2>
+
+        <nav>
+            <a href="/student">Dashboard</a>
+            <a href="/attendance-history" class="active">Attendance History</a>
+            <a href="/">Logout</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="header">
+            <div>
+                <h1>My Attendance History</h1>
+                <p>View your subject-wise attendance records.</p>
+            </div>
+
+            <div class="student-info">
+                <strong>Student Name</strong>
+                <span>Roll No: 2024CSE001</span>
+            </div>
+        </header>
+
+        <!-- Summary Cards -->
+        <section class="summary-cards">
+
+            <div class="card">
+                <h3>Total Classes</h3>
+                <h2>45</h2>
+            </div>
+
+            <div class="card">
+                <h3>Present</h3>
+                <h2>38</h2>
+            </div>
+
+            <div class="card">
+                <h3>Absent</h3>
+                <h2>7</h2>
+            </div>
+
+            <div class="card">
+                <h3>Overall Attendance</h3>
+                <h2>84.4%</h2>
+            </div>
+
+        </section>
+
+        <!-- Subject Attendance -->
+        <section class="section">
+            <h2>Subject-wise Attendance</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Total Classes</th>
+                        <th>Present</th>
+                        <th>Absent</th>
+                        <th>Attendance %</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Database Management System</td>
+                        <td>15</td>
+                        <td>13</td>
+                        <td>2</td>
+                        <td>86.7%</td>
+                    </tr>
+
+                    <tr>
+                        <td>Object Oriented Programming</td>
+                        <td>12</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>83.3%</td>
+                    </tr>
+
+                    <tr>
+                        <td>Software Engineering</td>
+                        <td>10</td>
+                        <td>9</td>
+                        <td>1</td>
+                        <td>90%</td>
+                    </tr>
+
+                    <tr>
+                        <td>Discrete Mathematics</td>
+                        <td>8</td>
+                        <td>6</td>
+                        <td>2</td>
+                        <td>75%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Detailed Attendance -->
+        <section class="section">
+            <h2>Detailed Attendance Records</h2>
+
+            <div class="filters">
+                <select>
+                    <option value="">All Subjects</option>
+                    <option>DBMS</option>
+                    <option>OOP</option>
+                    <option>Software Engineering</option>
+                    <option>Discrete Mathematics</option>
+                </select>
+
+                <select>
+                    <option value="">All Status</option>
+                    <option>Present</option>
+                    <option>Absent</option>
+                </select>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Subject</th>
+                        <th>Faculty</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>28-10-2026</td>
+                        <td>DBMS</td>
+                        <td>Faculty A</td>
+                        <td><span class="present">Present</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>27-10-2026</td>
+                        <td>OOP</td>
+                        <td>Faculty B</td>
+                        <td><span class="absent">Absent</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>26-10-2026</td>
+                        <td>Software Engineering</td>
+                        <td>Faculty C</td>
+                        <td><span class="present">Present</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>25-10-2026</td>
+                        <td>Discrete Mathematics</td>
+                        <td>Faculty D</td>
+                        <td><span class="present">Present</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>24-10-2026</td>
+                        <td>DBMS</td>
+                        <td>Faculty A</td>
+                        <td><span class="absent">Absent</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>
