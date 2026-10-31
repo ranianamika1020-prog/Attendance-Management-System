@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/student.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <h2>Student Panel</h2>
+
+        <nav>
+            <a href="#" class="active">Dashboard</a>
+            <a href="#">My Profile</a>
+            <a href="#">Attendance History</a>
+            <a href="#">Subject Attendance</a>
+            <a href="#">Logout</a>
+        </nav>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Student Dashboard</h1>
+                <p>Welcome, Student</p>
+            </div>
+        </header>
+
+
+        <!-- Student Information -->
+        <section class="profile-section">
+
+            <h2>Student Information</h2>
+
+            <div class="profile-card">
+                <p><strong>Name:</strong> Rahul Sharma</p>
+                <p><strong>Roll Number:</strong> 2024CSE101</p>
+                <p><strong>Department:</strong> Computer Science</p>
+                <p><strong>Semester:</strong> 3rd Semester</p>
+            </div>
+
+        </section>
+
+
+        <!-- Attendance Summary -->
+        <section class="cards">
+
+            <div class="card">
+                <h3>Total Classes</h3>
+                <p>60</p>
+            </div>
+
+            <div class="card">
+                <h3>Classes Attended</h3>
+                <p>51</p>
+            </div>
+
+            <div class="card">
+                <h3>Attendance Percentage</h3>
+                <p>85%</p>
+            </div>
+
+        </section>
+
+
+        <!-- Subject Attendance -->
+        <section class="attendance-section">
+
+            <h2>Subject-wise Attendance</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Total Classes</th>
+                        <th>Present</th>
+                        <th>Attendance</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>DBMS</td>
+                        <td>15</td>
+                        <td>13</td>
+                        <td>86.7%</td>
+                        <td class="good">Good</td>
+                    </tr>
+
+                    <tr>
+                        <td>OOP</td>
+                        <td>15</td>
+                        <td>14</td>
+                        <td>93.3%</td>
+                        <td class="good">Good</td>
+                    </tr>
+
+                    <tr>
+                        <td>Discrete Mathematics</td>
+                        <td>15</td>
+                        <td>10</td>
+                        <td>66.7%</td>
+                        <td class="low">Low</td>
+                    </tr>
+
+                    <tr>
+                        <td>Software Engineering</td>
+                        <td>15</td>
+                        <td>14</td>
+                        <td>93.3%</td>
+                        <td class="good">Good</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>
