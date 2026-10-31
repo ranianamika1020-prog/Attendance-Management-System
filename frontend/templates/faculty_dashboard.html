@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/faculty.css') }}">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        <h2>Faculty Panel</h2>
+
+        <nav>
+            <a href="#" class="active">Dashboard</a>
+            <a href="#">My Profile</a>
+            <a href="#">My Subjects</a>
+            <a href="#">Mark Attendance</a>
+            <a href="#">Attendance Records</a>
+            <a href="/">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <h1>Faculty Dashboard</h1>
+            <p>Welcome, Dr. Amit Kumar</p>
+        </header>
+
+        <section class="profile-section">
+            <h2>Faculty Information</h2>
+
+            <div class="profile-card">
+                <p><strong>Name:</strong> Dr. Amit Kumar</p>
+                <p><strong>Faculty ID:</strong> FAC101</p>
+                <p><strong>Department:</strong> Computer Science</p>
+                <p><strong>Designation:</strong> Assistant Professor</p>
+            </div>
+        </section>
+
+        <section class="cards">
+
+            <div class="card">
+                <h3>Assigned Subjects</h3>
+                <p>3</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Students</h3>
+                <p>120</p>
+            </div>
+
+            <div class="card">
+                <h3>Classes Conducted</h3>
+                <p>45</p>
+            </div>
+
+        </section>
+
+        <section class="attendance-section">
+            <h2>Student Attendance</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>Student Name</th>
+                        <th>Subject</th>
+                        <th>Attendance</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>2024CSE101</td>
+                        <td>Rahul Sharma</td>
+                        <td>DBMS</td>
+                        <td>85%</td>
+                        <td class="good">Good</td>
+                    </tr>
+
+                    <tr>
+                        <td>2024CSE102</td>
+                        <td>Priya Singh</td>
+                        <td>OOP</td>
+                        <td>72%</td>
+                        <td class="good">Good</td>
+                    </tr>
+
+                    <tr>
+                        <td>2024CSE103</td>
+                        <td>Aman Khan</td>
+                        <td>DBMS</td>
+                        <td>60%</td>
+                        <td class="low">Low</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>
