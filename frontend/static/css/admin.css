@@ -192,3 +192,8 @@ body {
     }
 
 }
+
+.sidebar nav a:last-child {
+    background-color: #dc3545;
+    color: white;
+}

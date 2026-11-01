@@ -15,6 +15,14 @@
         <h1>College Attendance System</h1>
         <p>Login to your account</p>
 
+        {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p class="error-message">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
         <form action="/login" method="POST">
 
             <label for="username">Username</label>
