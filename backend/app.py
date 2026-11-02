@@ -145,11 +145,71 @@ def dashboard():
     session.clear()
     return redirect(url_for("home"))
 
-
 @app.route("/admin")
 @role_required("admin")
 def admin():
-    return render_template("admin_dashboard.html")
+    connection = None
+    cursor = None
+
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        cursor.execute("""
+            SELECT
+                (SELECT COUNT(*) FROM students) AS total_students,
+                (SELECT COUNT(*) FROM faculty) AS total_faculty,
+                (SELECT COUNT(*) FROM subjects) AS total_subjects
+        """)
+
+        stats = cursor.fetchone()
+
+        cursor.execute("""
+            SELECT
+                COUNT(*) AS total_records,
+                SUM(
+                    CASE
+                        WHEN status = 'Present' THEN 1
+                        ELSE 0
+                    END
+                ) AS present_count
+            FROM attendance_records
+        """)
+
+        attendance = cursor.fetchone()
+
+        total_records = attendance["total_records"]
+        present_count = attendance["present_count"] or 0
+
+        attendance_percentage = (
+            round((present_count / total_records) * 100, 2)
+            if total_records > 0 else 0
+        )
+
+        return render_template(
+            "admin_dashboard.html",
+            total_students=stats["total_students"],
+            total_faculty=stats["total_faculty"],
+            total_subjects=stats["total_subjects"],
+
+            attendance_percentage=attendance_percentage
+        )
+
+    except Exception:
+        app.logger.exception("Admin dashboard database error")
+        flash("Unable to load dashboard statistics.")
+        return render_template(
+            "admin_dashboard.html",
+            total_students=0,
+            total_faculty=0,
+            total_subjects=0
+        )
+
+    finally:
+        if cursor:
+            cursor.close()
+        if connection and connection.is_connected():
+            connection.close()
 
 
 @app.route("/student")
