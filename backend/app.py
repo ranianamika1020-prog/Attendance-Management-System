@@ -45,6 +45,7 @@ def role_required(*roles):
     return decorator
 
 
+# Home / Login page
 @app.route("/")
 def home():
     if "user_id" in session:
@@ -83,22 +84,6 @@ def login():
         )
 
         user = cursor.fetchone()
-
-
-
-        print("\n--- LOGIN DEBUG ---")
-        print("Username entered:", username)
-        print("Selected role:", selected_role)
-        print("User found:", user is not None)
-
-        if user:
-            print("Database role:", user["role"])
-            print(
-                "Password matches:",
-                check_password_hash(user["password_hash"], password)
-            )
-
-        print("--- END DEBUG ---\n")        
 
         if (
             user is None
@@ -145,6 +130,8 @@ def dashboard():
     session.clear()
     return redirect(url_for("home"))
 
+
+# Admin dashboard
 @app.route("/admin")
 @role_required("admin")
 def admin():
@@ -191,18 +178,19 @@ def admin():
             total_students=stats["total_students"],
             total_faculty=stats["total_faculty"],
             total_subjects=stats["total_subjects"],
-
             attendance_percentage=attendance_percentage
         )
 
     except Exception:
         app.logger.exception("Admin dashboard database error")
         flash("Unable to load dashboard statistics.")
+
         return render_template(
             "admin_dashboard.html",
             total_students=0,
             total_faculty=0,
-            total_subjects=0
+            total_subjects=0,
+            attendance_percentage=0
         )
 
     finally:
@@ -212,36 +200,125 @@ def admin():
             connection.close()
 
 
+# Manage Students - View and Add Students
+@app.route("/students", methods=["GET", "POST"])
+@role_required("admin")
+def manage_students():
+    connection = None
+    cursor = None
+
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        # Add student
+        if request.method == "POST":
+            name = request.form.get("name", "").strip()
+            roll_no = request.form.get("roll_no", "").strip()
+            semester = request.form.get("semester", "").strip()
+
+            if not name or not roll_no or not semester:
+                flash("All fields are required.")
+                return redirect(url_for("manage_students"))
+
+            try:
+                semester = int(semester)
+
+                if semester < 1 or semester > 8:
+                    raise ValueError
+
+            except ValueError:
+                flash("Please select a valid semester.")
+                return redirect(url_for("manage_students"))
+
+            cursor.execute(
+                "SELECT student_id FROM students WHERE roll_no = %s",
+                (roll_no,)
+            )
+
+            existing_student = cursor.fetchone()
+
+            if existing_student:
+                flash("This roll number already exists.")
+                return redirect(url_for("manage_students"))
+
+            cursor.execute("""
+                INSERT INTO students (name, roll_no, semester)
+                VALUES (%s, %s, %s)
+            """, (name, roll_no, semester))
+
+            connection.commit()
+
+            flash("Student added successfully.")
+            return redirect(url_for("manage_students"))
+
+        # Fetch all students
+        cursor.execute("""
+            SELECT student_id, name, roll_no, semester
+            FROM students
+            ORDER BY student_id
+        """)
+
+        students = cursor.fetchall()
+
+        return render_template(
+            "manage_students.html",
+            students=students
+        )
+
+    except Exception:
+        app.logger.exception("Unable to manage students")
+        flash("Unable to load or add student records.")
+
+        return render_template(
+            "manage_students.html",
+            students=[]
+        )
+
+    finally:
+        if cursor:
+            cursor.close()
+
+        if connection and connection.is_connected():
+            connection.close()
+
+
+# Student dashboard
 @app.route("/student")
 @role_required("student")
 def student():
     return render_template("student_dashboard.html")
 
 
+# Faculty dashboard
 @app.route("/faculty")
 @role_required("faculty")
 def faculty():
     return render_template("faculty_dashboard.html")
 
 
+# Manage Subjects
 @app.route("/subjects")
 @role_required("admin")
 def subjects():
     return render_template("manage_subjects.html")
 
 
+# Mark Attendance
 @app.route("/mark-attendance")
 @role_required("faculty")
 def mark_attendance():
     return render_template("mark_attendance.html")
 
 
+# Attendance Records
 @app.route("/attendance-records")
 @role_required("admin", "faculty")
 def attendance_records():
     return render_template("attendance_records.html")
 
 
+# Student Attendance History
 @app.route("/attendance-history")
 @role_required("student")
 def attendance_history():
